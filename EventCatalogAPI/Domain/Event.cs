@@ -35,5 +35,6 @@ namespace EventCatalogAPI.Domain
 
         public virtual EventMetroArea EventMetroArea { get; set; }
 
+        public string PictureUrl { get; set; }
     }
 }
