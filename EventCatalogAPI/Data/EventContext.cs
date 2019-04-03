@@ -49,6 +49,7 @@ namespace EventCatalogAPI.Data
             builder.Property(c => c.State).IsRequired();
             builder.Property(c => c.ZipCode).IsRequired();
             builder.Property(c => c.Description).HasMaxLength(250);
+            builder.Property(c => c.PictureUrl).HasMaxLength(250);
 
             builder.HasOne(c => c.EventCategory)
                 .WithMany() //1:M relationship

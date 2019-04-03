@@ -2,43 +2,119 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventCatalogAPI.Data;
+using EventCatalogAPI.Domain;
+using EventCatalogAPI.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EventCatalogAPI.Controllers
 {
+    //
+
+    [Produces("application/json")]
     [Route("api/[controller]")]
+
     public class ValuesController : Controller
     {
-        // GET api/values
+
+        private readonly EventContext _context;
+        private readonly IConfiguration _config;
+        public ValuesController(EventContext context,
+            IConfiguration config)
+        {
+            _context = context;
+            _config = config;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("events/{id:int}")]
+        // http://localhost:39292/api/Values/events/5
+        public async Task<IActionResult> GetEventsById(int id)
         {
-            return new string[] { "value1", "value2" };
+            if (id <= 0)
+            {
+                return BadRequest("Incorrect Id!");
+            }
+
+            var events = await _context.Events.SingleOrDefaultAsync(c => c.Id == id);
+            events.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced"
+                    , _config["ExternalCatalogBaseUrl"]);
+            return Ok(events);
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("events/zip/{zipcode:int}")]
+        // http://localhost:39292/api/Values/events/zip/94102
+        public IActionResult GetEventsByZip(int zipcode)
         {
-            return "value";
+            var events = _context.Events.Where(c => c.ZipCode == zipcode).ToList();
+            events = ChangePictureUrl(events);
+            return Ok(events);
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpGet]
+        [Route("[action]")]
+        // http://localhost:39292/api/Values/EventsCategory
+        public async Task<IActionResult> EventsCategory()
         {
+            List<EventCategory> events = await _context.EventCategories.ToListAsync();
+            return Ok(events);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpGet]
+        [Route("events/{date:DateTime}")]
+        // http://localhost:39292/api/Values/events/4-30-2019
+        public IActionResult GetEventsByDate(DateTime date)
         {
+            var events = _context.Events.Where(c => 
+            c.Date.Year == date.Year &&
+            c.Date.Month == date.Month &&
+            c.Date.Day == date.Day
+            ).ToList();
+            events = ChangePictureUrl(events);
+            return Ok(events);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // http://localhost:39292/api/Values/Events?pageIndex=1&pageSize=4   <-- paginated
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> Events(
+               [FromQuery] int pageSize = 6,
+               [FromQuery] int pageIndex = 0)
         {
+            var eventsCount =
+                await _context.Events.LongCountAsync();
+
+            var events = await _context.Events
+                .OrderBy(c => c.Title)
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            events = ChangePictureUrl(events);
+
+            var model = new PaginatedItemsViewModel<Event>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Count = eventsCount,
+                Data = events
+            };
+            return Ok(model);
+
         }
+
+        private List<Event> ChangePictureUrl(List<Event> items)
+        {
+            items.ForEach(
+                c => c.PictureUrl = c.PictureUrl
+                    .Replace("http://externalcatalogbaseurltobereplaced"
+                    , _config["ExternalCatalogBaseUrl"])
+                );
+            return items;
+        }
+
     }
 }
