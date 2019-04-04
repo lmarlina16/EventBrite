@@ -26,10 +26,17 @@ namespace EventCatalogAPI
         //inject connectionString from appsetting.json
         public void ConfigureServices(IServiceCollection services)
         {
+            var server = Configuration["DatabaseServer"];
+            var database = Configuration["DatabaseName"];
+            var user = Configuration["DatabaseUser"];
+            var password = Configuration["DatabaseUserPassword"];
+            //            var connectionString = $"Server={server},1445;Database={database};User ID={user};Password={password};MultipleActiveResultSets=true;";
+            var connectionString = $"Server={server};Database={database};User ID={user};Password={password};MultipleActiveResultSets=true";
+
             services.AddMvc();
             //use json
             services.AddDbContext<EventContext>(
-                options => options.UseSqlServer(Configuration["ConnectionString"])
+                options => options.UseSqlServer(connectionString)
                 );
         }
 
