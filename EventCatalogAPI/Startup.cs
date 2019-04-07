@@ -30,7 +30,6 @@ namespace EventCatalogAPI
             var database = Configuration["DatabaseName"];
             var user = Configuration["DatabaseUser"];
             var password = Configuration["DatabaseUserPassword"];
-            //            var connectionString = $"Server={server},1445;Database={database};User ID={user};Password={password};MultipleActiveResultSets=true;";
             var connectionString = $"Server={server};Database={database};User ID={user};Password={password};MultipleActiveResultSets=true";
 
             services.AddMvc();

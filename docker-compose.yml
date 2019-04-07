@@ -15,10 +15,10 @@ services:
             DatabaseName: EventDb
             DatabaseUser: sa
             DatabaseUserPassword: EventApi(!)
-            ExternalCatalogBaseUrl: http://localhost:5020
+            ExternalCatalogBaseUrl: http://localhost:5510
         container_name: eventapi
         ports:
-            - "5020:80"
+            - "5510:80"
         networks:
             - backend
             - frontend

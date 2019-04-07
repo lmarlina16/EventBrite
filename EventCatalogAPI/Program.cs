@@ -32,5 +32,7 @@ namespace EventCatalogAPI
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
+
     }
+
 }

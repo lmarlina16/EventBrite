@@ -24,7 +24,7 @@ namespace EventCatalogAPI.Data
         //override it onCreating a table
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EventCategory>(ConfigureEevntCategory);
+            modelBuilder.Entity<EventCategory>(ConfigureEventCategory);
             modelBuilder.Entity<EventMetroArea>(ConfigureEventMetroArea);
             modelBuilder.Entity<Event>(ConfigureEevnt);
 
@@ -76,7 +76,7 @@ namespace EventCatalogAPI.Data
                 .IsRequired();
         }
 
-        private void ConfigureEevntCategory(EntityTypeBuilder<EventCategory> builder)
+        private void ConfigureEventCategory(EntityTypeBuilder<EventCategory> builder)
         {
             builder.ToTable("EventCategories");
             builder.Property(c => c.Id)

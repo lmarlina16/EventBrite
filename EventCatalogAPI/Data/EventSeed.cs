@@ -12,6 +12,7 @@ namespace EventCatalogAPI.Data
         public static void Seed(EventContext context)
         {
             context.Database.Migrate();
+
             if (!context.EventCategories.Any())
             {
                 context.EventCategories.AddRange(GetPreconfiguredEventCatagories());
