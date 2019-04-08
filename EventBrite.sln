@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventCatalogAPI", "EventCat
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{367C2D9D-FC09-4388-8DB4-1996740C5973}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvc", "WebMvc\WebMvc.csproj", "{BA9A602F-221C-4C00-BEC3-B55DAD408EC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{367C2D9D-FC09-4388-8DB4-1996740C5973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{367C2D9D-FC09-4388-8DB4-1996740C5973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{367C2D9D-FC09-4388-8DB4-1996740C5973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9A602F-221C-4C00-BEC3-B55DAD408EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9A602F-221C-4C00-BEC3-B55DAD408EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9A602F-221C-4C00-BEC3-B55DAD408EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9A602F-221C-4C00-BEC3-B55DAD408EC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +41,7 @@ Global
 		{D0F678EF-E0B1-4D68-A42C-98CA82ACEC31} = {486D9DFD-2B15-451E-A82B-9D580B3B220E}
 		{7DDF6AC1-61C9-4F9E-9AFD-2E1D229DB0DD} = {486D9DFD-2B15-451E-A82B-9D580B3B220E}
 		{D382F14E-8A49-4934-8CCA-E247BCEF18EC} = {D0F678EF-E0B1-4D68-A42C-98CA82ACEC31}
+		{BA9A602F-221C-4C00-BEC3-B55DAD408EC4} = {7DDF6AC1-61C9-4F9E-9AFD-2E1D229DB0DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA03B08F-0B50-48D1-8D6F-C00ECE80C111}
