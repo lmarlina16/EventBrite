@@ -18,7 +18,7 @@ namespace EventCatalogAPI.Controllers
             _env = env;
         }
 
-        // http://localhost:39292/api/pic/5
+        // http://localhost:5510/api/pic/5
         // GET api/pic/5
         [HttpGet("{id}")]
         public IActionResult GetImage(int id)

@@ -31,7 +31,7 @@ namespace EventCatalogAPI.Controllers
 
         [HttpGet]
         [Route("events/{id:int}")]
-        // http://localhost:39292/api/Catalog/events/5
+        // http://localhost:5510/api/Catalog/events/5
         public async Task<IActionResult> GetEventsById(int id)
         {
             if (id <= 0)
@@ -47,7 +47,7 @@ namespace EventCatalogAPI.Controllers
 
         [HttpGet]
         [Route("events/zip/{zipcode:int}")]
-        // http://localhost:39292/api/Catalog/events/zip/94102
+        // http://localhost:5510/api/Catalog/events/zip/94102
         public IActionResult GetEventsByZip(int zipcode)
         {
             var events = _context.Events.Where(c => c.ZipCode == zipcode).ToList();
@@ -57,7 +57,7 @@ namespace EventCatalogAPI.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        // http://localhost:39292/api/Catalog/EventsCategory
+        // http://localhost:5510/api/Catalog/EventsCategory
         public async Task<IActionResult> EventsCategory()
         {
             List<EventCategory> events = await _context.EventCategories.ToListAsync();
@@ -66,7 +66,7 @@ namespace EventCatalogAPI.Controllers
 
         [HttpGet]
         [Route("events/{date:DateTime}")]
-        // http://localhost:39292/api/Catalog/events/4-30-2019
+        // http://localhost:5510/api/Catalog/events/4-30-2019
         public IActionResult GetEventsByDate(DateTime date)
         {
             var events = _context.Events.Where(c => 
@@ -78,7 +78,7 @@ namespace EventCatalogAPI.Controllers
             return Ok(events);
         }
 
-        // http://localhost:39292/api/Catalog/Events?pageIndex=1&pageSize=4   <-- paginated
+        // http://localhost:5510/api/Catalog/Events?pageIndex=1&pageSize=4   <-- paginated
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> Events(
