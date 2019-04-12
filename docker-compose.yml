@@ -50,7 +50,7 @@ services:
             dockerfile: Dockerfile
         environment:
             DASPNETCORE_ENVIRONMENT: Development
-            MvcClient: http://l192.168.1.132:6200
+            MvcClient: http://localhost:6200
         container_name: tokenserviceapi
         ports:
             - "7000:80"
