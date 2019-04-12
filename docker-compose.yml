@@ -34,7 +34,7 @@ services:
             CatalogUrl: http://catalog
             #please change the first part to your own IP address
             IdentityUrl: http://192.168.1.132:7000
-            CallBackRul: http://localhost:6200
+            CallBackUrl: http://localhost:6200
         container_name: eventshop
         ports:
             - "6200:80"
