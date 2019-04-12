@@ -51,7 +51,7 @@ services:
         environment:
             DASPNETCORE_ENVIRONMENT: Development
             MvcClient: http://localhost:6200
-        container_name: tokenserviceapi
+        container_name: tokenapi
         ports:
             - "7000:80"
         networks:
