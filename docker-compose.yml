@@ -32,6 +32,9 @@ services:
         environment:
             ASPNETCORE_ENVIRONMENT: Development 
             CatalogUrl: http://event
+            #please change the first part to your own IP address
+            IdentityUrl: http://192.168.1.132:7000
+            CallBackRul: http://localhost:6200
         container_name: eventshop
         ports:
             - "6200:80"
@@ -39,6 +42,23 @@ services:
             - frontend 
         depends_on:
             - event
+            - tokenserver
+
+    tokenserver:
+        build:
+            context: .\TokenServiceApi
+            dockerfile: Dockerfile
+        environment:
+            DASPNETCORE_ENVIRONMENT: Development
+            MvcClient: http://l192.168.1.132:6200
+        container_name: tokenserviceapi
+        ports:
+            - "7000:80"
+        networks:
+            - backend
+            - frontend
+        depends_on:
+            - mssqlserver
 
     mssqlserver:
         image: "microsoft/mssql-server-linux:latest"
