@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebMvc.services;
 using WebMvc.ViewModels;
@@ -42,5 +43,14 @@ namespace WebMvc.Controllers
 
             return View(vm);
         }
+
+        [Authorize]
+        public IActionResult About()
+        {
+            ViewData["Messgae"] = "Your application description page";
+
+            return View();
+        }
+
     }
 }
