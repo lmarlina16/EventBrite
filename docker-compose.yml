@@ -25,6 +25,21 @@ services:
         depends_on:
             - mssqlserver
 
+    webmvc:
+        build:
+            context: .\WebMvc
+            dockerfile: Dockerfile
+        environment:
+            ASPNETCORE_ENVIRONMENT: Development 
+            CatalogUrl: http://catalog
+        container_name: eventshop
+        ports:
+            - "6200:80"
+        networks:
+            - frontend 
+        depends_on:
+            - event
+
     mssqlserver:
         image: "microsoft/mssql-server-linux:latest"
         environment:

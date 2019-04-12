@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebMvc.Infrastructure;
+using WebMvc.services;
 
 namespace WebMvc
 {
@@ -22,6 +25,10 @@ namespace WebMvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpClient, CustomHttpClient>();
+            services.AddSingleton<ICatalogService, CatalogService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

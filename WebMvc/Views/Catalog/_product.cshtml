@@ -1,0 +1,42 @@
+﻿@model WebMvc.Models.Event
+
+
+
+
+<form asp-controller="Cart" asp-action="AddToCart">
+    <img class="esh-catalog-thumbnail" src="@Model.PictureUrl" />
+    <div class="esh-catalog-name">
+        <span>@Model.Title</span>
+    </div>
+    <div class="esh-catalog-date">
+        <span>@Model.Date.ToString()</span>
+    </div>
+    <div class="esh-catalog-text">
+        <span>@Model.Address1.ToString()</span>
+    </div>
+    <div class="esh-catalog-text">
+        <span>@Model.City.ToString()</span>
+        <span>@Model.State.ToString()</span>
+        <span>@Model.ZipCode.ToString()</span>
+    </div>
+    <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
+    <div class="esh-catalog-price">
+        <span>@Model.Price.ToString("N2")</span>
+    </div>
+
+    <input type="hidden" asp-for="@Model.Id" name="id" />
+    <input type="hidden" asp-for="@Model.Title" name="title" />
+    <input type="hidden" asp-for="@Model.Description" name="description" />
+    <input type="hidden" asp-for="@Model.Date" name="date" />
+    <input type="hidden" asp-for="@Model.Address1" name="address1" />
+    <input type="hidden" asp-for="@Model.Address2" name="Address2" />
+    <input type="hidden" asp-for="@Model.City" name="sity" />
+    <input type="hidden" asp-for="@Model.State" name="state" />
+    <input type="hidden" asp-for="@Model.Price" name="price" />
+    <input type="hidden" asp-for="@Model.FreeEvent" name="freeEvent" />
+    <input type="hidden" asp-for="@Model.EventCategoryId" name="categoryId" />
+    <input type="hidden" asp-for="@Model.EventMetroAreaId" name="metroAreaId" />
+    <input type="hidden" asp-for="@Model.PictureUrl" name="pictureUrl" />
+    <input type="hidden" asp-for="@Model.EventCategory" name="category" />
+    <input type="hidden" asp-for="@Model.EventMetroArea" name="metroArea" />
+</form>

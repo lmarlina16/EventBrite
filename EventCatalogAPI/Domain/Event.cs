@@ -31,10 +31,11 @@ namespace EventCatalogAPI.Domain
 
         public int EventMetroAreaId { get; set; }
 
+        public string PictureUrl { get; set; }
+
         public virtual EventCategory EventCategory { get; set; }
 
         public virtual EventMetroArea EventMetroArea { get; set; }
 
-        public string PictureUrl { get; set; }
     }
 }

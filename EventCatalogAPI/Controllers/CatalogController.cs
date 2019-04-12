@@ -57,11 +57,20 @@ namespace EventCatalogAPI.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        // http://localhost:5510/api/Catalog/EventsCategory
-        public async Task<IActionResult> EventsCategory()
+        // http://localhost:5510/api/Catalog/EventCategories
+        public async Task<IActionResult> EventCategories()
         {
             List<EventCategory> events = await _context.EventCategories.ToListAsync();
             return Ok(events);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        // http://localhost:5510/api/Catalog/EventMetroAreas
+        public async Task<IActionResult> EventMetroAreas()
+        {
+            List<EventMetroArea> metroAreas = await _context.EventMetroAreas.ToListAsync();
+            return Ok(metroAreas);
         }
 
         [HttpGet]

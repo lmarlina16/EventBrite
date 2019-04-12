@@ -39,8 +39,8 @@ namespace EventCatalogAPI.Data
             {
                 new EventCategory(){ Category="Music"},
                 new EventCategory(){ Category="Arts"},
-                new EventCategory(){ Category="Sports&Fitness"},
-                new EventCategory(){ Category="Family&Education"}
+                new EventCategory(){ Category="Sports & Fitness"},
+                new EventCategory(){ Category="Family & Education"}
 
             };
         }

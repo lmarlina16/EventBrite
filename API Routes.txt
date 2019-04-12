@@ -1,0 +1,11 @@
+http://localhost:5510/api/Catalog/events/5
+
+http://localhost:5510/api/Catalog/events/zip/94102
+
+http://localhost:5510/api/Catalog/EventsCategory
+
+http://localhost:5510/api/Catalog/events/4-30-2019
+
+http://localhost:5510/api/Catalog/Events?pageIndex=1&pageSize=4
+
+http://localhost:5510/api/pic/5
