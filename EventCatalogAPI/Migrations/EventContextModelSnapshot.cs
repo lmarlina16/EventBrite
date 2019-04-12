@@ -30,6 +30,9 @@ namespace EventCatalogAPI.Migrations
                         .HasAnnotation("SqlServer:HiLoSequenceName", "event_hilo")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
+                    b.Property<double>("Price")
+                        .IsRequired();
+
                     b.Property<string>("Address1")
                         .IsRequired();
 

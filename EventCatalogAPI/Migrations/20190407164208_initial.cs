@@ -50,6 +50,7 @@ namespace EventCatalogAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
                     Address1 = table.Column<string>(nullable: false),
                     Address2 = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: false),
