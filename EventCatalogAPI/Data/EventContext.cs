@@ -37,6 +37,8 @@ namespace EventCatalogAPI.Data
                 .IsRequired(true)
                 .ForSqlServerUseSequenceHiLo("event_hilo");
 
+            builder.Property(c => c.Price).IsRequired();
+
             builder.Property(c => c.Title)
                 .IsRequired()
                 .HasMaxLength(100);
