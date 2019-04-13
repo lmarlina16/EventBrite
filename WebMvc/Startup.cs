@@ -36,6 +36,7 @@ namespace WebMvc
         {
             services.AddMvc();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddSingleton<ICatalogService, CatalogService>();
@@ -68,6 +69,11 @@ namespace WebMvc
                 options.Scope.Add("offline_access");
                 options.Scope.Add("basket");
                 options.Scope.Add("order");
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "name",
+                    RoleClaimType = "role"
+                };
 
             });
 

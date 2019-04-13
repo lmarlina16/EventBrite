@@ -33,7 +33,7 @@ services:
             ASPNETCORE_ENVIRONMENT: Development 
             CatalogUrl: http://event
             #please change the first part to your own IP address
-            IdentityUrl: http://192.168.1.132:7000
+            IdentityUrl: http://192.168.3.140:7000
             CallBackUrl: http://localhost:6200
         container_name: eventshop
         ports:
