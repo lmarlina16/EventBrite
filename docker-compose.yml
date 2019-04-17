@@ -44,6 +44,7 @@ services:
         depends_on:
             - event
             - tokenserver
+            - cart
 
     tokenserver:
         build:
