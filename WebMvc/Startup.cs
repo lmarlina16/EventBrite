@@ -17,7 +17,6 @@ using Newtonsoft.Json.Serialization;
 using WebMvc.Models;
 using WebMvc.Infrastructure;
 using WebMvc.services;
-using TokenServiceApi.Models;
 using WebMvc.Services;
 
 namespace WebMvc
@@ -42,6 +41,7 @@ namespace WebMvc
             services.AddSingleton<ICatalogService, CatalogService>();
 
             services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            services.AddTransient<ICartService, CartService>();
 
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
@@ -102,7 +102,10 @@ namespace WebMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Catalog}/{action=Index}/{id?}");
+                routes.MapRoute(
+                  name: "defaultError",
+                  template: "{controller=Error}/{action=Error}");
             });
         }
     }
