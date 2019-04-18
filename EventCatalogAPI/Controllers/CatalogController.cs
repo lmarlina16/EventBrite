@@ -34,7 +34,7 @@ namespace EventCatalogAPI.Controllers
         // http://localhost:5510/api/Catalog/events/5
         public async Task<IActionResult> GetEventsById(int id)
         {
-            if (id <= 0)
+            if (id <= null)
             {
                 return BadRequest("Incorrect Id!");
             }

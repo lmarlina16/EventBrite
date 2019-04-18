@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace EventCatalogAPI
 {
@@ -37,15 +38,32 @@ namespace EventCatalogAPI
             services.AddDbContext<EventContext>(
                 options => options.UseSqlServer(connectionString)
                 );
+
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc("v1", new Info
+                {
+                    Title = "Event HTTP API",
+                    Version = "v1",
+                    Description = "The event Service HTTP API",
+                    TermsOfService = "Terms Of Service"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+            public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger()
+                .UseSwaggerUI(c =>
+               {
+                   c.SwaggerEndpoint("$/swagger/v1/swagger.json", "EventCatalogAPI v1");
+               });
 
             app.UseMvc();
         }
