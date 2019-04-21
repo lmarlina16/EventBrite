@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using WebMvc.Infrastructure;
 using WebMvc.Models;
 
-namespace WebMvc.services
+namespace WebMvc.Services
 {
     public class CatalogService : ICatalogService
     {

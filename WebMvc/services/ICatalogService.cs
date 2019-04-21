@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebMvc.Models;
 
-namespace WebMvc.services
+namespace WebMvc.Services
 {
     public interface ICatalogService
     {

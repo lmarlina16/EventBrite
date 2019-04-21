@@ -33,9 +33,12 @@ services:
             ASPNETCORE_ENVIRONMENT: Development 
             CatalogUrl: http://event
             #please change the first part to your own IP address
-            IdentityUrl: http://192.168.82.145:7000
+            IdentityUrl: http://10.0.75.1:7000
             CallBackUrl: http://localhost:6200
             CartUrl: http://cart
+            OrderUrl: http://order
+            StripePublicKey: pk_test_OZdysmsxlR4jVCTMGDzgXqyE00gO2oXvY4
+            StripePrivateKey: sk_test_xXp79ZbOjVSJVWGmOn5oUnbT00csGuwsct 
         container_name: eventshop
         ports:
             - "6200:80"
@@ -81,6 +84,28 @@ services:
         depends_on:
             - basket.data
             - tokenserver
+
+    order:
+        image: event/order
+        build: 
+            context: .\OrderApi
+            dockerfile: Dockerfile
+    
+        environment: 
+            ASPNETCORE_ENVIRONMENT: Development 
+            IdentityUrl: http://tokenserver
+            SQLSERVER_HOST: eventserver
+            SA_PASSWORD: EventApi(!)
+            DATABASE: OrdersDb
+        container_name: orderapi
+        ports:
+            - "7600:80"
+        networks:
+            - backend
+            - frontend 
+        depends_on:
+            - mssqlserver
+            - tokenserver 
 
     mssqlserver:
         image: "microsoft/mssql-server-linux:latest"

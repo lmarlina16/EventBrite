@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
-namespace WebMvc.services
+namespace WebMvc.Services
 {
 
         public interface IIdentityService<T>

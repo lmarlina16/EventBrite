@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using WebMvc.Models;
-using WebMvc.Infrastructure;
-using WebMvc.services;
 using WebMvc.Services;
+using WebMvc.Infrastructure;
 
 namespace WebMvc
 {
@@ -33,16 +26,22 @@ namespace WebMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
+
+            //services.Configure<AppSettings>(Configuration);
+            services.Configure<PaymentSettings>(Configuration);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IHttpClient, CustomHttpClient>();
-            services.AddSingleton<ICatalogService, CatalogService>();
+            services.AddTransient<ICatalogService, CatalogService>();
 
             services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
             services.AddTransient<ICartService, CartService>();
-
+            services.AddTransient<IOrderService, OrderService>();
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
             var callBackUrl = Configuration.GetValue<string>("CallBackUrl");
@@ -50,10 +49,10 @@ namespace WebMvc
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                // options.DefaultAuthenticateScheme = "Cookies";
             })
             .AddCookie()
             .AddOpenIdConnect(options => {
-
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
                 options.Authority = identityUrl.ToString();
@@ -69,18 +68,9 @@ namespace WebMvc
                 options.Scope.Add("offline_access");
                 options.Scope.Add("basket");
                 options.Scope.Add("order");
-
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                };
-
-
             });
-
         }
-    
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

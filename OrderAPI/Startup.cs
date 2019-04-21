@@ -51,7 +51,7 @@ namespace OrderAPI
                    }
                 )
                   .AddApiExplorer();
- //           services.Configure<OrderSettings>(Configuration);
+//            services.Configure<OrderSettings>(Configuration);
 
             ConfigureAuthService(services);
 

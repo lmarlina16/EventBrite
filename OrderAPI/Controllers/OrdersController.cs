@@ -31,17 +31,11 @@ namespace OrderAPI.Controllers
         public OrdersController(OrderContext orderContext, ILogger<OrdersController> logger, IConfiguration config, IBus bus)
         {
             _config = config;
-            // _orderContext = ordersContext;
             _orderContext = orderContext ?? throw new ArgumentNullException(nameof(orderContext));
-
             ((DbContext)orderContext).ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-
             _bus = bus;
             _logger = logger;
         }
-
-        // GET api/values
-
 
         // POST api/v1/Orders/new
         [Route("new")]
