@@ -1,7 +1,7 @@
 ﻿using Common.Messaging;
 using MassTransit;
 using Microsoft.Extensions.Logging;
-using ShoesOnContainers.Services.CartApi.Model;
+using CartApi.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using ShoesOnContainers.Services.CartApi.Model;
+using CartApi.Model;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;

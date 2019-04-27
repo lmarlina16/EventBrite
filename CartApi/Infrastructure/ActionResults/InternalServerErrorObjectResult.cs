@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ShoesOnContainers.Services.CartApi.Infrastructure.ActionResults
+namespace CartApi.Infrastructure.ActionResults
 {
     public class InternalServerErrorObjectResult : ObjectResult
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ShoesOnContainers.Services.CartApi.Model;
+using CartApi.Model;
 using Microsoft.Extensions.Logging;
 using System.Net;
 
-namespace ShoesOnContainers.Services.CartApi.Controllers
+namespace CartApi.Controllers
 {
     [Route("api/[controller]")]
 

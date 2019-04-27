@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShoesOnContainers.Services.CartApi.Infrastructure.Exceptions
+namespace CartApi.Infrastructure.Exceptions
 {
     /// <summary>
     /// Exception type for app exceptions
