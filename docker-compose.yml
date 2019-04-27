@@ -33,12 +33,12 @@ services:
             ASPNETCORE_ENVIRONMENT: Development 
             CatalogUrl: http://event
             #please change the first part to your own IP address
-            IdentityUrl: http://10.0.75.1:7000
+            IdentityUrl: http://50.35.82.54:7000
             CallBackUrl: http://localhost:6200
             CartUrl: http://cart
             OrderUrl: http://order
-            StripePublicKey: pk_test_OZdysmsxlR4jVCTMGDzgXqyE00gO2oXvY4
-            StripePrivateKey: sk_test_xXp79ZbOjVSJVWGmOn5oUnbT00csGuwsct 
+            StripePublicKey: pk_test_VHoIMpzy8oKs62POgxkUAri800jwOegeZt
+            StripePrivateKey: sk_test_KCkuuVc7lJFJKu2J00BzrNlX00dlJ6qFZR 
         container_name: eventshop
         ports:
             - "6200:80"
